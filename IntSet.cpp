@@ -27,7 +27,7 @@
 //     beginning of the data array.
 // (6) We DON'T care what is stored in any of the array elements
 //     from data[used] through data[capacity - 1].
-//     Note: This applies also when the IntSet is empry (used == 0)
+//     Note: This applies also when the IntSet is empty (used == 0)
 //           in which case we DON'T care what is stored in any of
 //           the data array elements.
 //     Note: A distinct int value in the IntSet can be any of the
@@ -80,7 +80,7 @@ void IntSet::resize(int new_capacity){
    if(new_capacity <= 0){
       capacity = DEFAULT_CAPACITY;
    }
-   else if(new_capacity = used){
+   else if(new_capacity == used){
       capacity = used;
    }
    else{
@@ -111,8 +111,8 @@ IntSet::IntSet(const IntSet& src) : capacity(src.capacity), used(src.used)
 {
    data = new int[capacity];
 
-   for(int index = 0; index < capacity; ++index){
-      data[index] = src.data[index];
+   for(int i = 0; i < capacity; i++){
+      data[i] = src.data[i];
 
    }
 }
@@ -154,8 +154,8 @@ bool IntSet::isEmpty() const{
 
 bool IntSet::contains(int anInt) const{
    if (used > 0){
-      for(int index = 0; index < used; ++index)
-         if(data[index] == anInt){
+      for(int i = 0; i < used; i++)
+         if(data[i] == anInt){
             return true; 
          }
    }
@@ -167,8 +167,8 @@ bool IntSet::isSubsetOf(const IntSet& otherIntSet) const{
       return true;
    } 
    else{
-      for(int index = 0; index < used; index++){
-            if(!otherIntSet.contains(data[index])){
+      for(int i = 0; i < used; i++){
+            if(!otherIntSet.contains(data[i])){
                return false;
             }
         }
@@ -179,7 +179,7 @@ bool IntSet::isSubsetOf(const IntSet& otherIntSet) const{
 void IntSet::DumpData(ostream& out) const{
    if (used > 0){
       out << data[0];
-      for (int i = 1; i < used; ++i)
+      for (int i = 1; i < used; i++)
          out << "  " << data[i];
    }
 }
@@ -188,9 +188,9 @@ IntSet IntSet::unionWith(const IntSet& otherIntSet) const {
     IntSet unionIntSet = (*this); 
     int sizeOtherInt = otherIntSet.size();
 
-    for (int index = 0; index < sizeOtherInt; ++index) {
-        if(!unionIntSet.contains(otherIntSet.data[index]))
-            unionIntSet.add(otherIntSet.data[index]);
+    for (int i = 0; i < sizeOtherInt; i++) {
+        if(!unionIntSet.contains(otherIntSet.data[i]))
+            unionIntSet.add(otherIntSet.data[i]);
    }
    return unionIntSet;
 }
@@ -200,9 +200,9 @@ IntSet IntSet::intersect(const IntSet& otherIntSet) const{
 
     int sizeOtherInt = otherIntSet.size();
 
-   for (int index = 0; index < sizeOtherInt; index++) {
-      if(!otherIntSet.contains(data[index])){
-         interSet.remove(data[index]);
+   for (int i = 0; i < sizeOtherInt; i++) {
+      if(!otherIntSet.contains(data[i])){
+         interSet.remove(data[i]);
    }
 }
    return interSet;
@@ -212,9 +212,9 @@ IntSet IntSet::subtract(const IntSet& otherIntSet) const{
    IntSet subSet = (*this); 
    int sizeOtherInt = otherIntSet.size(); 
 
-   for(int index = 0; index < sizeOtherInt; ++index){
-      if(subSet.contains(otherIntSet.data[index]))
-         subSet.remove(otherIntSet.data[index]);
+   for(int i = 0; i < sizeOtherInt; i++){
+      if(subSet.contains(otherIntSet.data[i]))
+         subSet.remove(otherIntSet.data[i]);
    }
    return subSet; // Return subtracted IntSet.
 }
@@ -229,7 +229,7 @@ bool IntSet::add(int anInt)
    if(!contains(anInt)){
       if(used >= capacity) {resize(int(capacity * 1.5) + 1);}
       data[used] = anInt;
-      ++used;
+      used++;
       return true;
    }
    return false;
@@ -238,12 +238,12 @@ bool IntSet::add(int anInt)
 bool IntSet::remove(int anInt)
 {
     if(contains(anInt)){
-        for(int index = 0; index < used; ++index){
-            if(data[index] == anInt) {
-                for(int index2 = index; index2 < used - 1; ++index2) {
-                    data[index2] = data[index2 + 1];
+        for(int i = 0; i < used; i++){
+            if(data[i] == anInt) {
+                for(int i2 = i; i2 < used - 1; i2++) {
+                    data[i2] = data[i2 + 1];
                 }
-                --used;
+                used--;
                 return true;
             }
         }

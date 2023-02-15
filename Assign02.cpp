@@ -377,39 +377,39 @@ int main(int argc, char* argv[])
          {
          case 11:
             is1 = is1.unionWith(is1);
-            cout << "is1 has been unioned with itself" << endl;
+            cout << "is1 has been union with itself" << endl;
             break;
          case 12:
             is1 = is1.unionWith(is2);
-            cout << "is1 has been unioned with is2" << endl;
+            cout << "is1 has been union with is2" << endl;
             break;
          case 13:
             is1 = is1.unionWith(is3);
-            cout << "is1 has been unioned with is3" << endl;
+            cout << "is1 has been union with is3" << endl;
             break;
          case 21:
             is2 = is2.unionWith(is1);
-            cout << "is2 has been unioned with is1" << endl;
+            cout << "is2 has been union with is1" << endl;
             break;
          case 22:
             is2 = is2.unionWith(is2);
-            cout << "is2 has been unioned with itself" << endl;
+            cout << "is2 has been union with itself" << endl;
             break;
          case 23:
             is2 = is2.unionWith(is3);
-            cout << "is2 has been unioned with is3" << endl;
+            cout << "is2 has been union with is3" << endl;
             break;
          case 31:
             is3 = is3.unionWith(is1);
-            cout << "is3 has been unioned with is1" << endl;
+            cout << "is3 has been union with is1" << endl;
             break;
          case 32:
             is3 = is3.unionWith(is2);
-            cout << "is3 has been unioned with is2" << endl;
+            cout << "is3 has been union with is2" << endl;
             break;
          case 33:
             is3 = is3.unionWith(is3);
-            cout << "is3 has been unioned with itself" << endl;
+            cout << "is3 has been union with itself" << endl;
          }
          break;
       case 'z': case 'Z':
